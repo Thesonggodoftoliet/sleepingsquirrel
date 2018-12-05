@@ -21,6 +21,15 @@ public class Health {
 	private String date;
 	private int calorie;
 	private int numofstep;
+	private String keyword;
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword() {
+		this.keyword = new Integer(userid).toString()+date;
+	}
 	
 	/**
 	 * @return the userid

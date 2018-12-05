@@ -14,9 +14,11 @@ import com.sleepingsquirrel.instance.Health;
  */
 public interface HealthDao {
 	
-	List <HealthDao> getInfoByuserid(int userid);
+	List<Health> getInfoByuserid(int userid);
 	
 	boolean addHealth(Health health);
+
+	boolean updateHealth(Health health);
 	
 	boolean deleteByid(int userid);//删除时间最前的一条
 	

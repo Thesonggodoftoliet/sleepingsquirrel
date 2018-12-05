@@ -30,26 +30,30 @@ public class HealthUpdateServiceImpl implements HealthUpdateService {
 	/* (non-Javadoc)
 	 * @see com.sleepingsquirrel.service.HealthUpdateService#getTime()
 	 */
+
 	@Override
-	public String getTime() {
-		// TODO Auto-generated method stub
-		Format FM = new SimpleDateFormat("yyyy-MM-dd");
-		Calendar date = Calendar.getInstance();
-		date.add(Calendar.DAY_OF_MONTH, -1);
-		return FM.format(date);
+	public String updateInfo(Health health) {
+		String tag =insertInfo(health);
+		if (tag.equals("1")) return "1";
+		else {
+			HealthDao HD = new  HealthDaoImpl();
+			if (HD.updateHealth(health)) return "1";
+			return "0";
+		}
 	}
 
 	/* (non-Javadoc)
 	 * @see com.sleepingsquirrel.service.HealthUpdateService#updateInfo(com.sleepingsquirrel.instance.Health)
 	 */
 	@Override
-	public String updateInfo(Health health) {
+	public String insertInfo(Health health) {
 		// TODO Auto-generated method stub
 		//0 上传失败  1 上传成功
-		health.setDate(getTime());
+		//health.setDate(getTime());
 		HealthDao HD = new HealthDaoImpl();
 		int num = HD.getNumofInfo(health.getUserid());
-		if(num == 30){
+		if(num > 30){
+			//如果该用户的条数超过30就删除最早的一条记录
 			if(! HD.deleteByid(health.getUserid())) return "0";
 		}
 		

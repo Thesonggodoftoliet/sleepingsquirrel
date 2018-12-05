@@ -13,7 +13,7 @@ import com.sleepingsquirrel.instance.Health;
  * date:2018年10月18日 time:上午8:30:45
  */
 public interface HealthUpdateService {
-	String getTime();
-	
+	String insertInfo(Health health);
+
 	String updateInfo(Health health);
 }

@@ -27,9 +27,9 @@ public class HealthDaoImpl implements HealthDao {
 	 * @see com.sleepingsquirrel.dao.HealthDao#getInfoByuserid(java.lang.String)
 	 */
 	@Override
-	public List<HealthDao> getInfoByuserid(int userid) {
+	public List<Health> getInfoByuserid(int userid) {
 		// TODO Auto-generated method stub
-		String sql = "select * from health where userid = "+userid;
+		String sql = "select * from health where userid = "+userid+"order by motifytime";
 		return JdbcUtils.getList(Health.class, sql);
 	}
 
@@ -39,10 +39,21 @@ public class HealthDaoImpl implements HealthDao {
 	@Override
 	public boolean addHealth(Health health) {
 		// TODO Auto-generated method stub
+		health.setKeyword();
 		int tag = 0;
-		String sql = "insert into health values(?,?,?,?)";
-		tag = JdbcUtils.executeSQL(sql, health.getUserid(),health.getDate(),health.getCalorie(),health.getNumofstep());
+		String sql = "insert into health values(?,?,?,?,?)";
+		tag = JdbcUtils.executeSQL(sql, health.getUserid(),health.getDate(),health.getCalorie(),health.getNumofstep(),health.getKeyword());
 		if ( tag == 1) return true;
+		return false;
+	}
+
+	@Override
+	public boolean updateHealth(Health health) {
+		health.setKeyword();
+		int tag = 0;
+		String sql = "update health set calorie=?,numofstep=? where keyword = ?";
+		tag = JdbcUtils.executeSQL(sql,health.getCalorie(),health.getNumofstep(),health.getKeyword());
+		if (tag == 1) return true;
 		return false;
 	}
 
@@ -52,7 +63,7 @@ public class HealthDaoImpl implements HealthDao {
 	@Override
 	public boolean deleteByid(int userid) {
 		// TODO Auto-generated method stub
-		String sql = "delete from health where date in (select top 1 * from health where userid= ? oder by modifytime";
+		String sql = "delete from health where date in (select top 1 * from health where userid= ? order by modifytime)";
 		int tag = JdbcUtils.executeSQL(sql, userid);
 		if (tag == 1) return true;
 		return false;

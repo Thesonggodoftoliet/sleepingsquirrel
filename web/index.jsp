@@ -13,7 +13,7 @@
   </head>
   <body>
   <p>我想看看能不能显示中文</p>
-  <form action="${pageContext.request.contextPath}/MenuList" method="post">
+  <form action="${pageContext.request.contextPath}/dataUpdate" method="post">
     <input name="searchfoodname" type="text">
     <input type="submit">
 
