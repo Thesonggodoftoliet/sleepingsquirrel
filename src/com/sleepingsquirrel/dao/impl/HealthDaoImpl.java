@@ -29,7 +29,7 @@ public class HealthDaoImpl implements HealthDao {
 	@Override
 	public List<Health> getInfoByuserid(int userid) {
 		// TODO Auto-generated method stub
-		String sql = "select * from health where userid = "+userid+"order by motifytime";
+		String sql = "select * from health where userid = "+userid+" order by date";
 		return JdbcUtils.getList(Health.class, sql);
 	}
 
@@ -42,7 +42,7 @@ public class HealthDaoImpl implements HealthDao {
 		health.setKeyword();
 		int tag = 0;
 		String sql = "insert into health values(?,?,?,?,?)";
-		tag = JdbcUtils.executeSQL(sql, health.getUserid(),health.getDate(),health.getCalorie(),health.getNumofstep(),health.getKeyword());
+		tag = JdbcUtils.executeSQL(sql, health.getKeyword(),health.getUserid(),health.getNumofstep(),health.getCalorie(),health.getDate());
 		if ( tag == 1) return true;
 		return false;
 	}

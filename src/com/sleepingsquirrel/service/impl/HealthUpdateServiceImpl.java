@@ -33,9 +33,10 @@ public class HealthUpdateServiceImpl implements HealthUpdateService {
 
 	@Override
 	public String updateInfo(Health health) {
-		String tag =insertInfo(health);
+		String tag = insertInfo(health);
 		if (tag.equals("1")) return "1";
 		else {
+			System.out.println("更新数据");
 			HealthDao HD = new  HealthDaoImpl();
 			if (HD.updateHealth(health)) return "1";
 			return "0";

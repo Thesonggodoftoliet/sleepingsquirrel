@@ -44,12 +44,12 @@ public class PasswordremindeServiceImpl implements PasswordreminderService {
 	@Override
 	public String editPassword(User tuser) {
 		// TODO Auto-generated method stub
-		// 2 无此账号  1 修改失败 0修改成功
+		// 2 无此账号  0 修改失败 ID修改成功
 		User sqluser = getUser(tuser);//tuser 存放了用户的电话或邮箱和修改后的密码 
 		UserDao userdao = new UserDaoImpl();
 		boolean tag = false;
 		if(sqluser == null) {
-			return "2";
+			return "0";
 		}
 		else {
 			sqluser.setUserpwd(tuser.getUserpwd());
@@ -60,8 +60,8 @@ public class PasswordremindeServiceImpl implements PasswordreminderService {
 				tag=userdao.updateUserbyemail(sqluser);
 			}
 		}
-		if (tag) return "0";
-		return "1";
+		if (tag) return Integer.toString(sqluser.getUserid());
+		return "0";
 	}
 
 }

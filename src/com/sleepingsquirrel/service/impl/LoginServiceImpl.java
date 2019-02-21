@@ -46,9 +46,9 @@ public class LoginServiceImpl implements LoginService {
 		
 		if (sqluser == null) return "2";
 		else{
-			if(sqluser.getUserpwd().equals(tuser.getUserpwd())) return "0";
+			if(sqluser.getUserpwd().equals(tuser.getUserpwd())) return Integer.toString(sqluser.getUserid());
 			
-			else return "1";
+			else return "0";
 		}
 
 	}

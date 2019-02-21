@@ -45,10 +45,10 @@ public class RegisterServiceImpl implements RegisterService {
 		
 		if(getUser(tempUser)==null) {
 			UDI.addUser(tempUser);
-			return "0";
+			return Integer.toString(tempUser.getUserid());
 		}
 		else {
-			return "1";
+			return "0";
 		}
 	}
 

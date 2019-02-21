@@ -28,8 +28,10 @@ public class Health {
 	}
 
 	public void setKeyword() {
-		this.keyword = new Integer(userid).toString()+date;
+		this.keyword = Integer.toString(userid)+date;
 	}
+
+	public void setKeyword(String keyword) {this.keyword = keyword;}
 	
 	/**
 	 * @return the userid

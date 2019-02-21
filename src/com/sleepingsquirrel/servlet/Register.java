@@ -55,15 +55,7 @@ public class Register extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		response.setContentType("text/html;charset=utf-8");
-		response.setCharacterEncoding("UTF-8");
 		PrintWriter out =response.getWriter();
-		/*
-		String userphone = request.getParameter("userphone");
-		String useremail = request.getParameter("useremail");
-		String userpwd = request.getParameter("userpwd");
-		*/
 
 		User newUser = new User();
 		try {
